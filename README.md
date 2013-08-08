@@ -63,7 +63,7 @@ The closure structure :
 
 <strong>Create a step :</strong>
 
-```Javacript
+```JavaScript
 var closure;
 
 closure = function () {
@@ -73,7 +73,7 @@ closure = function () {
 
 <strong>Retrieve a response form an other scope :</strong>
 
-```Javacript
+```JavaScript
 var closure
 
 closure = function () {
@@ -95,7 +95,7 @@ The parent yielded scope (parent.send() & parent.yld()), if current scope is cre
 
 Kills immediately the current process
 
-```Javacript
+```JavaScript
 var closure;
 
 closure = function () {
@@ -108,7 +108,7 @@ closure = function () {
 
 Send variables to the next yield response
 
-```Javacript
+```JavaScript
 var closure;
 
 closure = function () {
@@ -123,7 +123,7 @@ closure = function () {
 
 Your this context knows yld as internal method
 
-```Javacript
+```JavaScript
 var closure;
 
 closure = function () {
