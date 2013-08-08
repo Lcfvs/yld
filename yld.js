@@ -95,6 +95,11 @@ yld = (function () {
                 } catch (error if error instanceof StopIteration) {}
             });
         }
+        
+        defer(function () {
+            fnGenerator.close();
+            generator.close();
+        });
     };
     
     yld = function (fn) {
