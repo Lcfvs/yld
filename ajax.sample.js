@@ -4,21 +4,21 @@ onFormSubmit = function onFormSubmit(submitEvent) {
     var yldSendXHR, response, delay, notification;
  
     yldSendXHR = yield this.yld(sendXHR)({
-        uri: "http://example.com/upload",
+        uri: 'http://example.com/upload',
         body: document.querySelector('input').value,
-        method: "POST"
+        method: 'POST'
     });
  
     while (response === undefined || response.status !== 200) {
-        [delay, notification] = response === undefined ? [0, "Sending data..."] : [5000, "Server down, trying again in 5 seconds"];
+        [delay, notification] = response === undefined ? [0, 'Sending data...'] : [5000, 'Server down, trying again in 5 seconds'];
  
         console.log(notification);
  
         response = yield setTimeout(yldSendXHR.send, delay);
     }
  
-    yield console.log("Upload done : " + response.responseText);
-}
+    yield console.log('Upload done : ' + response.responseText);
+};
  
 sendXHR = function sendXHR(request) {
     var parent, method, xhr;
@@ -28,8 +28,9 @@ sendXHR = function sendXHR(request) {
  
     xhr = new XMLHttpRequest();
     xhr.open(method, request.uri, true);
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     
-    if (['post', 'POST'].indexOf(method) > -1) {
+    if (method === 'post' || method === 'POST') {
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     }
  
@@ -44,6 +45,6 @@ sendXHR = function sendXHR(request) {
     while (true) {
         yield xhr.send(request.body);
     }
-}
+};
  
 document.querySelector('form').onsubmit = yld(onFormSubmit);
