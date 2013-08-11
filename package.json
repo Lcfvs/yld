@@ -1,0 +1,16 @@
+{
+  "author": "Lcf.vs @Lcfvs",
+  "name": "yld",
+  "description": "A JavaScript promises alternative",
+  "version": "1.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Lcfvs/yld.git"
+  },
+  "main": "yld.js",
+  "engines": {
+    "node": "~0.10.13"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
