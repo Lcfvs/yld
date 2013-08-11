@@ -143,5 +143,4 @@ Requirements :
 --------------
 
 yield keyword support<br />
-Optional named arguments<br />
 ES5 Object methods
