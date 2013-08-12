@@ -1,15 +1,17 @@
 {
   "author": "Lcf.vs @Lcfvs",
   "name": "yld",
-  "description": "A JavaScript promises alternative",
-  "version": "1.0.1",
+  "description": "A JavaScript promises alternative (requires the yield keyword support)",
+  "homepage": "https://github.com/Lcfvs/",
+  "keywords": ["yld", "yield", "yielded", "asynchronous", "callback", "promise"],
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/Lcfvs/yld.git"
   },
   "main": "yld.js",
   "engines": {
-    "node": "~0.10.13"
+    "node": ">=0.10.13"
   },
   "dependencies": {},
   "devDependencies": {}
