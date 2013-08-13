@@ -1,7 +1,9 @@
 yld
 ===
 
-A JavaScript promises alternative, under the MIT License.
+Forget your promises, adopt the <strong>yielded style programming</strong> !
+
+This project is under the MIT License.
 
 
 Concept :
