@@ -15,6 +15,8 @@ Contrary to promises, which grow to declare a lot of functions to disorganize yo
 
 Each yield pauses the process and allows to retrieve a response from another function ... could easily be compared to a <strong>promise.then()</strong>.
 
+This method of programming allows you to not have to pass the variables from one scope to another, to handle the response.
+
 
 The yld function :
 ------------------
