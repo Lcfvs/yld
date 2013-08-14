@@ -1,7 +1,5 @@
 var fct, yielded;
  
-var fct;
- 
 fct = function fct(value) {
     var newValue;
     
