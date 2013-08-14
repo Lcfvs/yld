@@ -17,6 +17,9 @@ Each yield pauses the process and allows to retrieve a response from another fun
 
 This method of programming allows you to not have to pass the variables from one scope to another, to handle the response.
 
+More details in [the wiki](https://github.com/Lcfvs/yld/wiki)
+
+
 
 The yld function :
 ------------------
