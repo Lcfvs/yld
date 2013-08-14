@@ -7,7 +7,7 @@ fct = function fct(value) {
     response = value;
  
     while (true) {
-        // executed each 2 seconds
+        // executed each 2 seconds (infinite yielded loop)
         response = yield setTimeout(function () {
             var newValue;
             
