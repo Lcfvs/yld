@@ -36,7 +36,12 @@ sendXHR = function sendXHR(request) {
  
     xhr.onreadystatechange = function () {
         if (this.readyState === 4) {
-            parent.send(this);
+            parent.send(Object.create(this, {
+                request: {
+                    value: request,
+                    enumerable: true
+                }
+            }));
         }
     };
  
