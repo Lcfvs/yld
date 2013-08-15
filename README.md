@@ -9,7 +9,7 @@ This Node.js module is under the MIT License.
 Concept :
 ---------
 
-<strong>yld</strong> (pronounced "yielded") is tool based on that keyword.
+<strong>yld</strong> (pronounced "yielded") is a tool based on that keyword.
 
 Contrary to promises, which grow to declare a lot of functions to disorganize your code, <strong>yld</strong> allows you to execute instructions written in a linear list.
 
