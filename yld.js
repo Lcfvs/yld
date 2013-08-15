@@ -12,60 +12,39 @@ yld = (function () {
         setTimeout(closure);
     };
  
-    prepare = function ({fn: fn, args: args, generator: generator, parent: parent}) {
-        var proto, fnGenerator, response;
+    prepare = function* (parent) {
+        var proto, generator, fnGenerator, response;
         
         proto = {
             yld: function (fn) {
-                var namedArgs, generator, parent;
+                var parent;
                 
-                namedArgs = {
-                    fn: fn,
-                    parent: this
-                };
+                parent = this;
                 
                 return function () {
-                    generator = prepare(namedArgs);
-                    namedArgs.generator = generator;
-                    return generator.next().apply(null, arguments);
+                    var generator, proto;
+                    
+                    generator = prepare(parent);
+                    proto = generator.next().value;
+                    generator.next(generator);
+                    generator.next(fn.apply(proto, arguments));
                 };
             },
-            send: function () {
-                var args;
-                
-                args = arguments;
-                
+            next: function (value) {
                 defer(function () {
-                    var error;
-                    
-                    try {
-                        generator.send.apply(generator, args);
-                    } catch (error if error instanceof StopIteration) {}
+                    generator.next(value);
                 });
             },
             set error(value) {
-                var error;
-                
-                error = new Error(value);
-                
-                throw {
-                    name: 'YldError',
-                    message: value,
-                    toString: function () {
-                        var stack;
-                        
-                        stack = error.stack;
-                        
-                        return this.message + '\n\nStack trace:\n\n' + stack.substring(stack.indexOf('\n') + 1);
-                    }
-                };
+                defer(function() {
+                    fnGenerator.throw(typeof value === 'string' ? new Error(value) : value);
+                });
             }
         };
         
         if (parent !== undefined) {
             proto.parent = {
-               send: parent.send,
-               yld: parent.yld
+               next: parent.next
             };
             
             Object.freeze(proto.parent);
@@ -73,26 +52,12 @@ yld = (function () {
         
         Object.freeze(proto);
         
-        yield function () {
-            fnGenerator = fn.apply(proto, arguments);
-            generator.next();
-        };
-        
-        response = yield defer(function () {
-            var error;
-            
-            try {
-                fnGenerator.next();
-            } catch (error if error instanceof StopIteration) {}
-        });
+        generator = yield proto;
+        fnGenerator = yield null;
         
         while (true) {
             response = yield defer(function () {
-                var error;
-                
-                try {
-                    fnGenerator.send.apply(fnGenerator, [response]);
-                } catch (error if error instanceof StopIteration) {}
+                fnGenerator.next(response);
             });
         }
         
@@ -103,16 +68,13 @@ yld = (function () {
     };
     
     yld = function (fn) {
-        var namedArgs, generator;
-        
-        namedArgs = {
-            fn: fn
-        };
-        
         return function () {
-            generator = prepare(namedArgs);
-            namedArgs.generator = generator;
-            return generator.next().apply(null, arguments);
+            var generator, proto;
+            
+            generator = prepare();
+            proto = generator.next().value;
+            generator.next(generator);
+            generator.next(fn.apply(proto, arguments));
         };
     };
     

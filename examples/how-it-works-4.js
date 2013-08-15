@@ -1,6 +1,6 @@
 var fct, yielded;
  
-fct = function fct(value) {
+fct = function* fct(value) {
     var self, response;
  
     self = this; // stores this context in a variable
@@ -14,7 +14,7 @@ fct = function fct(value) {
             newValue = response + 1;
             console.log(newValue);
             
-            self.send(newValue); // sends the new value to the next context yield
+            self.next(newValue); // sends the new value to the next context yield
         }, 2000);
     }
 };

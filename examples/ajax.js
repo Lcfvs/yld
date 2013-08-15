@@ -1,6 +1,6 @@
 var onFormSubmit, sendXHR;
 
-onFormSubmit = function onFormSubmit(submitEvent) {
+onFormSubmit = function* onFormSubmit(submitEvent) {
     var yldSendXHR, response, delay, notification;
  
     yldSendXHR = yield this.yld(sendXHR)({
@@ -14,13 +14,13 @@ onFormSubmit = function onFormSubmit(submitEvent) {
  
         console.log(notification);
  
-        response = yield setTimeout(yldSendXHR.send, delay);
+        response = yield setTimeout(yldSendXHR.next, delay);
     }
  
     yield console.log('Upload done : ' + response.responseText);
 };
  
-sendXHR = function sendXHR(request) {
+sendXHR = function* sendXHR(request) {
     var parent, method, xhr;
  
     parent = this.parent;
@@ -36,7 +36,7 @@ sendXHR = function sendXHR(request) {
  
     xhr.onreadystatechange = function () {
         if (this.readyState === 4) {
-            parent.send(Object.create(this, {
+            parent.next(Object.create(this, {
                 request: {
                     value: request,
                     enumerable: true
@@ -45,7 +45,7 @@ sendXHR = function sendXHR(request) {
         }
     };
  
-    yield parent.send(this);
+    yield parent.next(this);
  
     while (true) {
         yield xhr.send(request.body);

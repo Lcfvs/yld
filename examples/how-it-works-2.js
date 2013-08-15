@@ -1,11 +1,11 @@
 var fct, yielded;
  
-fct = function fct(value) {
+fct = function* fct(value) {
     var newValue;
     
     newValue = value + 1;
     console.log(newValue);
-    yield this.send(); // jumps to the next yield
+    yield this.next(); // jumps to the next yield
    
     yield console.log(newValue + 1); // reached
 };

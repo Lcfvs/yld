@@ -1,6 +1,6 @@
 var fct, yielded;
  
-fct = function fct(value) {
+fct = function* fct(value) {
     yield console.log(value + 1);
     
     // never reached, because nothing specifies to jump to the next yield

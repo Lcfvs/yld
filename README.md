@@ -3,7 +3,7 @@ yld
 
 Forget your promises, adopt the <strong>yielded style programming</strong> !
 
-This project is under the MIT License.
+This Node.js module is under the MIT License.
 
 
 Concept :
@@ -96,7 +96,7 @@ The closure properties :
 
 <strong>Object this.parent</strong>
 
-The parent yielded scope (parent.send() & parent.yld()), if current scope is created by this.yld(), else returns undefined
+The parent yielded scope (parent.next()), if current scope is created by this.yld(), else returns undefined
 
 <strong>String set this.error()</strong>
 
@@ -111,9 +111,9 @@ closure = function () {
 };
 ```
 
-<strong>Function this.send()</strong>
+<strong>Function this.next()</strong>
 
-Send variables to the next yield response
+Sends variables to the next yield response
 
 ```JavaScript
 var closure;
@@ -121,7 +121,7 @@ var closure;
 closure = function () {
     var response;
 
-    this.send(123);
+    this.next(123);
     response = yield; // response is 123
 };
 ```
@@ -137,8 +137,8 @@ closure = function () {
     var yielded, response;
     
     yielded = this.yld(function (/* args */) {
-        // here, the this.parent.send() is used to send a response to the parent scope
-        this.parent.send(123);
+        // here, the this.parent.next() is used to send a response to the parent scope
+        this.parent.next(123);
     });
     
     response = yield yielded(/* args */); // response is 123
@@ -149,5 +149,4 @@ closure = function () {
 Requirements :
 --------------
 
-yield keyword support<br />
-ES5 Object methods
+ES6 Generators support
