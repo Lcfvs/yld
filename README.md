@@ -1,53 +1,56 @@
 yld
 ===
 
-Forget your promises, adopt the <strong>yielded style programming</strong> !
+Forget your promises, adopt the <strong>yielded programming style</strong> !
 
-This Node.js module is under the MIT License.
+This Node.js module is under MIT License.
 
 
-Concept :
----------
+Concept
+-------
 
 <strong>yld</strong> (pronounced "yielded") is a tool based on that keyword.
 
-Contrary to promises, which grow to declare a lot of functions to disorganize your code, <strong>yld</strong> allows you to execute instructions written in a linear list.
+Contrary to promises, where developers add functions and disorganize their code, <strong>yld</strong> allows you to execute instructions linearly.
 
-Each yield pauses the process and allows to retrieve a response from another function ... could easily be compared to a <strong>promise.then()</strong>.
+Each `yield` pauses the process and allows to retrieve a response from another function ... this is comparable to <strong>promise.then()</strong>.
 
-This method of programming allows you to not have to pass the variables from one scope to another, to handle the response.
+This programming method avoids to pass the variables from scope to scope, to handle the response.
 
-If you have already made the asynchronous JavaScript, you might know some techniques to treat the answer.
-
-### The callbacks :
-
-They allow you to treat a response after execution of an asynchronous function, in case of error or not.
-
-Their defects have to have functions managing the success or failure and to push to use a lot of nested functions, affecting readability and pollute your function arguments space by callbacks.
-
-To overcome this, another method has appeared, the promises.
+If you have already tried to use JavaScript asynchonously, you have certainly thought about some answers to these issues.
 
 
-### Promises :
+### Callbacks
 
-Promises have a structure as to manage the success or failure of a function execution, to perform functions during the progression of the execution, etc..
+They often share variables needed to treat the response.
 
-They are distinguished by the fact that a promise is an object that you pass a whole bunch of functions via its methods to manage the different steps of execution.
+Their other inconvenients are that you have to create functions to handle the success or failure and to forward the result to calling functions. This affects the readability of your code and pollute it with additionals arguments.
 
-So we end up with a lot of functions in the code, sometimes with internal references.
-
-This tends to deconstruct your code so that it can become a real proofreading mental gymnastic.
+In order to avoid that, the promises appeared.
 
 
-### The yield keyword :
+### Promises
 
-Keeping me up to date with advances in JavaScript, I discovered, among the future ECMAScript 6 standard proposals : the `yield` keyword.
+Promises adds a structure to manage the function result, to run functions during the execution, etc..
 
-This keyword, a special kind of `return`.
+They are distinguished by the fact that a promise is an object that you pass whole bunch of functions through its methods to handle the execution steps.
 
-If You create a function that contains one or more `yield` keyword, no `return`, that function returns a generator.
+So we end up with a lot of functions, themselves sharing internal references.
 
-The returned generator, understand by this as an instruction list contained by your function. That generator pauses at each `yield` it contains, until you call it the following yield, by using the `next()` method.
+This puzzling your code.
+
+
+### The yield keyword
+
+While reading the future ECMAScript 6 specification, I found an interesting keyword [proposal](http://wiki.ecmascript.org/doku.php?id=harmony:generators) : the `yield`.
+
+The `yield` keyword si a new kind of `return`.
+
+If you create a function containing one or more `yield` and no `return`, the function returns a generator.
+
+Note the asterisk following the `function` word.
+
+The returned generator can be considered as the instruction lists contained by your function. The generator pauses at each `yield` until you call the `next()` method.
 
 ``` JavaScript
 var generate, generator;
@@ -72,9 +75,9 @@ setTimeout(function () {
 }, 2000);
 ```
 
-In fact, a `yield` seems as a 2 ways channel, while the first statement following `yield` returned by the `generator.next()` instruction, an affected variable by a `yield` is seen, finally, affected by one value passed to `​​generator.next()`.
+In fact, `yield` builds a two ways communication : the first statement following `yield` is returned by `next()` and the variable passed to the second `next(variable)` is affected to the `yield` left `=` operand.
 
-This allows you to send a value ​​to the generator, at the current `yield` during the course of the generator.
+This allow you to send a value to the generator from the current `yield` and to receive a value there.
 
 ``` JavaScript
 var generate, generator;
@@ -102,25 +105,25 @@ setTimeout(function () {
 Finally, the generators also have a `close()` method to free the memory used by the generator, & a `throw()` method to throw an error.
 
 
-### The yielded style programming :
+### The yielded style programming
 
-Based on this discovery, I thought it should be possible to assign to the current context (scope)  variable, the result of an asynchronous function and then continue the process.
+From this discovery, I thought it could be possible to assign to the current context (scope) variable the result of an asynchronous function and then to continue the process.
 
-Thus was born **yld** (pronounced yielded).
+Thus, **yld** was born.
 
-It is a tool that allows you to turn a generator into a list of instructions that run one after the other, as if it were a simple function but waiting for the response of asynchronous functions when necessary.
+This is a tool that allows you to transform a generator into an instructions list that run one after the other, as if it were a simple function but waiting for the response of asynchronous functions when necessary.
 
-In addition, it adds a notion of relationship between the different scopes and allows you to not have to pass the variables from one scope to another, to treat the response.
+Moreover, it adds a relationship notion between the different scopes and allows you to not pass the variables from one scope to another in order to treat the response.
 
 
-You can read the how-it-works & example files in the [examples directory](https://github.com/Lcfvs/yld/tree/master/examples).
+You can find how it works and exemple files in the [examples folder](https://github.com/Lcfvs/yld/tree/master/examples).
 
-As you can see, there are very few functions, you only pass the arguments your function need and, especially, the process stops at each `yield`, allowing you to retrieve a value on the same line the call to an asynchronous function, as if it wasn't.
+As you can see, this is just few functions. You only pass the arguments your function needs and, especially, the process stops at each `yield`, allowing you to retrieve a value on the same line that the asynchronous function call.
 
 
 ### Notes :
 
-The ES6 generators are a possibility of further improvement of JavaScript, to use **yld** in **Node.js**, you need a Node.js version >= 0.11.x, using the `--harmony` flag.
+The ES6 generators are still a feature to come in JavaScript. To use **yld** in Node.js, you need a **Node.js version >= 0.11.x**, using the **--harmony flag**.
 
 
 
