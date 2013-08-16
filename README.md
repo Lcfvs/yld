@@ -13,7 +13,7 @@ Concept
 
 Contrary to promises, where developers add functions and disorganize their code, <strong>yld</strong> allows you to execute instructions linearly.
 
-Each `yield` pauses the process and allows to retrieve a response from another function ... this is comparable to <strong>promise.then()</strong>.
+Each `yield` pauses the process and allows to retrieve a response from another function ... this is comparable to `promise.then()`.
 
 This programming method avoids to pass the variables from scope to scope, to handle the response.
 
