@@ -1,10 +1,10 @@
 {
   "author": "Lcf.vs <michael.rouges@gmail.com>",
   "name": "yld",
-  "description": "Forget your promises... adopt the yielded style programming",
+  "description": "Forget your promises... adopt the yielded programming style",
   "homepage": "https://github.com/Lcfvs/",
   "keywords": ["yld", "yield", "yielded", "asynchronous", "callback", "promise"],
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": {
     "type": "git",
     "url": "git://github.com/Lcfvs/yld.git"
