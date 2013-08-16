@@ -105,7 +105,7 @@ setTimeout(function () {
 Finally, the generators also have a `close()` method to free the memory used by the generator, & a `throw()` method to throw an error.
 
 
-### The yielded style programming
+### The yielded programming style
 
 From this discovery, I thought it could be possible to assign to the current context (scope) variable the result of an asynchronous function and then to continue the process.
 
