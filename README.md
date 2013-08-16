@@ -24,7 +24,7 @@ If you have already tried to use JavaScript asynchonously, you have certainly th
 
 They often share variables needed to treat the response.
 
-Their other inconvenients are that you have to create functions to handle the success or failure and to forward the result to calling functions. This affects the readability of your code and pollute it with additionals arguments.
+Their other inconvenients are that you have to create functions to handle the success or failure and to forward the result to calling functions. This affects the readability of your code and pollutes it with additional argument.
 
 In order to avoid that, the promises appeared.
 
@@ -33,16 +33,16 @@ In order to avoid that, the promises appeared.
 
 Promises adds a structure to manage the function result, to run functions during the execution, etc..
 
-They are distinguished by the fact that a promise is an object that you pass whole bunch of functions through its methods to handle the execution steps.
+They are distinguished by the fact that a promise is an object tthough which methods you pass a whole bunch of functions to handle the execution steps.
 
-So we end up with a lot of functions, themselves sharing internal references.
+So you end up with a lot of functions, themselves sharing internal references.
 
-This puzzling your code.
+Thus puzzling your code.
 
 
 ### The yield keyword
 
-While reading the future ECMAScript 6 specification, I found an interesting keyword [proposal](http://wiki.ecmascript.org/doku.php?id=harmony:generators) : the `yield`.
+Reading the future ECMAScript 6 [specification](http://wiki.ecmascript.org/doku.php?id=harmony:generators), I found an interesting keyword proposal : the `yield`.
 
 The `yield` keyword si a new kind of `return`.
 
@@ -107,18 +107,18 @@ Finally, the generators also have a `close()` method to free the memory used by 
 
 ### The yielded programming style
 
-From this discovery, I thought it could be possible to assign to the current context (scope) variable the result of an asynchronous function and then to continue the process.
+Therefore, I thought it could be possible to assign to the current context (scope) variable the result of an asynchronous function and then continue the process.
 
 Thus, **yld** was born.
 
-This is a tool that allows you to transform a generator into an instructions list that run one after the other, as if it were a simple function but waiting for the response of asynchronous functions when necessary.
+This is a tool that allows you to transform a generator into an instruction list that run one after the other, as if it were a simple function but waiting for the response of asynchronous functions when necessary.
 
-Moreover, it adds a relationship notion between the different scopes and allows you to not pass the variables from one scope to another in order to treat the response.
+Moreover, it adds a relationship notion between the different scopes and allows you to avoid passing the variables from one scope to another in order to treat the response.
 
 
-You can find how it works and exemple files in the [examples folder](https://github.com/Lcfvs/yld/tree/master/examples).
+You can see how it works and find exemple files in the [examples folder](https://github.com/Lcfvs/yld/tree/master/examples).
 
-As you can see, this is just few functions. You only pass the arguments your function needs and, especially, the process stops at each `yield`, allowing you to retrieve a value on the same line that the asynchronous function call.
+As you can see, this requires few functions. You only pass the arguments your function needs and, the process stops at each yield, allowing you to retrieve a value on the same line as the asynchronous function call.
 
 
 ### Notes :
