@@ -6,6 +6,11 @@ Forget your promises, adopt the <strong>yielded programming style</strong> !
 This Node.js module is under MIT License.
 
 
+Install
+-------
+`$ npm install yld`
+
+
 Concept
 -------
 
