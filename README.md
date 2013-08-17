@@ -239,7 +239,7 @@ closure = function () {
 
 <strong>Function this.nextCb()</strong>
 
-Sends variables to the next yield response, usable to retrieve variables as a callback
+Sends variables to the next yield response, usable to retrieve callback arguments
 
 
 <strong>Function this.yld()</strong>
