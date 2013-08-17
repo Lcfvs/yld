@@ -30,9 +30,13 @@ yld = (function () {
                     generator.next(fn.apply(proto, arguments));
                 };
             },
-            next: function (value) {
+            next: function () {
+                var args;
+                
+                args = arguments;
+                
                 defer(function () {
-                    generator.next(value);
+                    generator.next.apply(generator, args);
                 });
             },
             set error(value) {
