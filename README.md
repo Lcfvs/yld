@@ -241,6 +241,8 @@ closure = function () {
 
 Sends variables to the next yield response, usable to retrieve callback arguments
 
+It's a fallback until the appearance of destructuring assignments
+
 
 <strong>Function this.yld()</strong>
 
