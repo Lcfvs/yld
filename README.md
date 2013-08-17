@@ -243,6 +243,8 @@ Sends variables to the next yield response, usable to retrieve callback argument
 
 It's a fallback until the appearance of destructuring assignments
 
+See [how-it-works-7.js](https://github.com/Lcfvs/yld/blob/master/examples/how-it-works-7.js)
+
 
 <strong>Function this.yld()</strong>
 
