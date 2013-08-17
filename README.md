@@ -237,6 +237,11 @@ closure = function () {
 };
 ```
 
+<strong>Function this.nextCb()</strong>
+
+Sends variables to the next yield response, usable to retrieve variables as a callback
+
+
 <strong>Function this.yld()</strong>
 
 Your this context knows yld as internal method
