@@ -4,9 +4,7 @@ yld = require('yld');
 readFile = require('fs').readFile;
 
 read = function* read(path) {
-    var self, response, error, data;
-    
-    self = this;
+    var response, error, data;
     
     response = yield readFile(path, {}, this.nextCb);
     
