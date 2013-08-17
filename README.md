@@ -51,7 +51,7 @@ Reading the future ECMAScript 6 [specification](http://wiki.ecmascript.org/doku.
 
 The `yield` keyword si a new kind of `return`.
 
-If you create a function containing one or more `yield` and no `return`, the function returns a generator.
+If you create a function containing one or more `yield`, that function returns a generator.
 
 Note the asterisk following the `function` word.
 
