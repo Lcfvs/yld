@@ -4,14 +4,14 @@
   "description": "Forget your promises... adopt the yielded programming style",
   "homepage": "https://github.com/Lcfvs/",
   "keywords": ["yld", "yield", "yielded", "asynchronous", "callback", "promise"],
-  "version": "1.0.5",
+  "version": "1.0.6",
   "repository": {
     "type": "git",
     "url": "git://github.com/Lcfvs/yld.git"
   },
   "main": "yld.js",
   "engines": {
-    "node": ">=0.11.5"
+    "node": ">=0.11.2"
   },
   "dependencies": {},
   "devDependencies": {}
