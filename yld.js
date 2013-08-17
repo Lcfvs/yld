@@ -6,7 +6,9 @@ https://github.com/Lcfvs/yld
 var yld;
  
 yld = (function () {
-    var defer, prepare, yld;
+    var slice, defer, prepare, yld;
+    
+    slice = Array.prototype.slice;
     
     defer = typeof process === 'object' && typeof process.nextTick === 'function' ? process.nextTick : function nextTick(closure) {
         setTimeout(closure);
@@ -38,6 +40,9 @@ yld = (function () {
                 defer(function () {
                     generator.next.apply(generator, args);
                 });
+            },
+            nextCb: function () {
+                proto.next(slice.call(arguments));
             },
             set error(value) {
                 defer(function() {
