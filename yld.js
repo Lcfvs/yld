@@ -24,12 +24,15 @@ yld = (function () {
                 parent = this;
                 
                 return function () {
-                    var generator, proto;
+                    var generator, proto, fnGenerator;
                     
                     generator = prepare(parent);
                     proto = generator.next().value;
                     generator.next(generator);
-                    generator.next(fn.apply(proto, arguments));
+                    fnGenerator = fn.apply(proto, arguments);
+                    generator.next(fnGenerator);
+                    
+                    return fnGenerator;
                 };
             },
             next: function () {
@@ -81,12 +84,15 @@ yld = (function () {
     
     yld = function (fn) {
         return function () {
-            var generator, proto;
+            var generator, proto, fnGenerator;
             
             generator = prepare();
             proto = generator.next().value;
             generator.next(generator);
-            generator.next(fn.apply(proto, arguments));
+            fnGenerator = fn.apply(proto, arguments);
+            generator.next(fnGenerator);
+            
+            return fnGenerator;
         };
     };
     
