@@ -6,9 +6,20 @@ https://github.com/Lcfvs/yld
 var yld;
  
 yld = (function () {
-    var slice, defer, prepare, yld;
+    var slice, clearer, defer, prepare, yld;
     
     slice = Array.prototype.slice;
+    
+    clearer = {
+        yld: {
+            value: undefined
+        },
+        throw: {
+            value: undefined
+        }
+    };
+    
+    Object.freeze(clearer);
     
     defer = typeof process === 'object' && typeof process.nextTick === 'function' ? process.nextTick : function nextTick(closure) {
         setTimeout(closure);
@@ -47,24 +58,15 @@ yld = (function () {
             nextCb: function () {
                 proto.next(slice.call(arguments));
             },
-            set error(value) {
+            throw: function(error) {
                 defer(function() {
-                    fnGenerator.throw(typeof value === 'string' ? new Error(value) : value);
+                    fnGenerator.throw(typeof error === 'string' ? new Error(error) : error);
                 });
             }
         };
         
         if (parent !== undefined) {
-            proto.parent = Object.create(parent, {
-                yld: {
-                    value: undefined
-                },
-                error: {
-                    value: undefined
-                }
-            });
-            
-            Object.freeze(proto.parent);
+            proto.parent = Object.create(parent, clearer);
         }
         
         generator = yield proto;
@@ -92,7 +94,7 @@ yld = (function () {
             fnGenerator = fn.apply(proto, arguments);
             generator.next(fnGenerator);
             
-            return fnGenerator;
+            return Object.create(fnGenerator, clearer);
         };
     };
     
