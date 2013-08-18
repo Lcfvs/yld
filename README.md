@@ -136,8 +136,10 @@ The yld function :
 ------------------
 
 ```JavaScript
-var yielded = yld(closure);
-yielded(/* closure arguments */);
+var yielded, generator;
+
+yielded = yld(closure);
+generator = yielded(/* closure arguments */);
 ```
 
 <dl>
@@ -202,23 +204,23 @@ closure = function () {
 ```
 
 
-The closure properties :
+The generator properties :
 ------------------------
 
 <strong>[FROZEN] Object this.parent</strong>
 
-The parent yielded scope (parent.yld & parent.error are unavailable. Each scope treats them itself)
+The parent yielded scope (parent.yld & parent.throw are unavailable. Each scope treats them itself)
 
 
-<strong>String set this.error()</strong>
+<strong>String set this.throw(error)</strong>
 
-Kills immediately the current process
+Throws an error (a string or an instance of Error)
 
 ```JavaScript
 var closure;
 
 closure = function () {
-    this.error = 'error message'; // throws the error message
+    this.throw('error message'); // throws the error message
     yield; // unreached point
 };
 ```
