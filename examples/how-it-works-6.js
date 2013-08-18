@@ -7,7 +7,8 @@ fct = function* fct(value) {
  
     yieldedChild = this.yld(fctBis); // ylds fctBis with this context as parent
     
-    child = yield yieldedChild(); // executes yieldedChild
+    yield child = yieldedChild(); // stores the child scope
+    
  
     while (response !== 5) {
         response = yield setTimeout(function () {
@@ -21,8 +22,6 @@ fctBis = function* fctBis() {
     var parent, response;
  
     parent = this.parent;
- 
-    response = yield parent.next(this); // sends this context to the parent context
  
     while (true) {
         response = yield parent.next(response + 1); // sends the response to the parent context
