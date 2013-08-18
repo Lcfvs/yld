@@ -207,7 +207,8 @@ The closure properties :
 
 <strong>Object this.parent</strong>
 
-The parent yielded scope (parent.next()), if current scope is created by this.yld(), else returns undefined
+The parent yielded scope (parent.yld & parent.error are unavailable. Each scope treats them itself)
+
 
 <strong>String set this.error()</strong>
 
