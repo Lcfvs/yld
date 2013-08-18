@@ -52,14 +52,15 @@ yld = (function () {
         };
         
         if (parent !== undefined) {
-            proto.parent = {
-               next: parent.next
-            };
-            
-            Object.freeze(proto.parent);
+            proto.parent = Object.create(parent, {
+                yld: {
+                    value: undefined
+                },
+                error: {
+                    value: undefined
+                }
+            });
         }
-        
-        Object.freeze(proto);
         
         generator = yield proto;
         fnGenerator = yield null;
