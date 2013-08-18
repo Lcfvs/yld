@@ -60,6 +60,8 @@ yld = (function () {
                     value: undefined
                 }
             });
+            
+            Object.freeze(proto.parent);
         }
         
         generator = yield proto;
