@@ -205,7 +205,7 @@ closure = function () {
 The closure properties :
 ------------------------
 
-<strong>Object this.parent</strong>
+<strong>[FROZEN] Object this.parent</strong>
 
 The parent yielded scope (parent.yld & parent.error are unavailable. Each scope treats them itself)
 
