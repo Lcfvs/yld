@@ -107,7 +107,7 @@ setTimeout(function () {
 }, 2000);
 ```
 
-Finally, the generators also have a `close()` method to free the memory used by the generator, & a `throw()` method to throw an error.
+Finally, the generators also have a `throw()` method to throw an error.
 
 
 ### The yielded programming style
