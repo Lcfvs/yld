@@ -77,11 +77,6 @@ yld = (function () {
                 fnGenerator.next(response);
             });
         }
-        
-        defer(function () {
-            fnGenerator.close();
-            generator.close();
-        });
     };
     
     yld = function (fn) {
