@@ -38,7 +38,7 @@ In order to avoid that, the promises appeared.
 
 Promises adds a structure to manage the function result, to run functions during the execution, etc..
 
-They are distinguished by the fact that a promise is an object tthough which methods you pass a whole bunch of functions to handle the execution steps.
+They are distinguished by the fact that a promise is an object though which methods you pass a whole bunch of functions to handle the execution steps.
 
 So you end up with a lot of functions, themselves sharing internal references.
 
