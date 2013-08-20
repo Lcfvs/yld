@@ -6,6 +6,8 @@ https://github.com/Lcfvs/yld
 var yld;
  
 yld = (function () {
+    'use strict';
+    
     var slice, clearer, defer, prepare, yld;
     
     slice = Array.prototype.slice;
