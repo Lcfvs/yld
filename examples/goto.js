@@ -23,6 +23,8 @@ goto = function* () {
             break;
         }
     }
+    
+    yield this.throw(response);
 };
 
 yld(goto)();
