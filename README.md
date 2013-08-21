@@ -130,7 +130,7 @@ As you can see, this requires few functions. You only pass the arguments your fu
 
 The ES6 generators are still a feature to come in JavaScript.
 
-To use **yld** in Node.js, you need a **Node.js version >= 0.11.x**, using the **--harmony flag**.
+To use **yld** in Node.js, you need a **Node.js version >= 0.11.x**, using the **--harmony** flag.
 
 To use **yld** in a browser :
 - install [Chrome canary](https://www.google.com/intl/en/chrome/browser/canary.html)
