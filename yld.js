@@ -45,7 +45,7 @@ yld = (function () {
                     fnGenerator = fn.apply(proto, arguments);
                     generator.next(fnGenerator);
                     
-                    return fnGenerator;
+                    return proto;
                 };
             },
             next: function () {
@@ -91,7 +91,7 @@ yld = (function () {
             fnGenerator = fn.apply(proto, arguments);
             generator.next(fnGenerator);
             
-            return Object.create(fnGenerator, clearer);
+            return Object.create(proto, clearer);
         };
     };
     
