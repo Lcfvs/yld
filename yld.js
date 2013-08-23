@@ -40,7 +40,7 @@ yld = (function () {
                     var generator, proto, fnGenerator;
                     
                     generator = prepare(parent);
-                    proto = generator.next().value;
+                    proto = generator.next();
                     generator.next(generator);
                     fnGenerator = fn.apply(proto, arguments);
                     generator.next(fnGenerator);
@@ -48,13 +48,9 @@ yld = (function () {
                     return Object.create(proto, clearer);
                 };
             },
-            next: function () {
-                var args;
-                
-                args = arguments;
-                
+            next: function (value) {
                 defer(function () {
-                    generator.next.apply(generator, args);
+                    generator.next(value);
                 });
             },
             nextCb: function () {
@@ -62,7 +58,7 @@ yld = (function () {
             },
             throw: function(error) {
                 defer(function() {
-                    fnGenerator.throw(typeof error === 'string' ? new Error(error) : error);
+                    fnGenerator.throw(error);
                 });
             }
         };
@@ -86,7 +82,7 @@ yld = (function () {
             var generator, proto, fnGenerator;
             
             generator = prepare();
-            proto = generator.next().value;
+            proto = generator.next();
             generator.next(generator);
             fnGenerator = fn.apply(proto, arguments);
             generator.next(fnGenerator);
