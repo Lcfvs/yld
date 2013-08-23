@@ -40,7 +40,7 @@ yld = (function () {
                     var generator, proto, fnGenerator;
                     
                     generator = prepare(parent);
-                    proto = generator.next();
+                    proto = generator.next().value;
                     generator.next(generator);
                     fnGenerator = fn.apply(proto, arguments);
                     generator.next(fnGenerator);
@@ -82,7 +82,7 @@ yld = (function () {
             var generator, proto, fnGenerator;
             
             generator = prepare();
-            proto = generator.next();
+            proto = generator.next().value;
             generator.next(generator);
             fnGenerator = fn.apply(proto, arguments);
             generator.next(fnGenerator);
