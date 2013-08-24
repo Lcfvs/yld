@@ -10,7 +10,13 @@ onFormSubmit = function* onFormSubmit(submitEvent) {
     });
  
     while (response === undefined || response.status !== 200) {
-        [delay, notification] = response === undefined ? [0, 'Sending data...'] : [5000, 'Server down, trying again in 5 seconds'];
+        if (response === undefined) {
+            delay = 0;
+            notification = 'Sending data...';
+        } else {
+            delay = 5000;
+            notification = 'Server down, trying again in 5 seconds';
+        }
  
         console.log(notification);
  
