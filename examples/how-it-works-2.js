@@ -7,7 +7,7 @@ fct = function* fct(value) {
     console.log(newValue);
     yield this.next(); // jumps to the next yield
    
-    yield console.log(newValue + 1); // reached
+    console.log(newValue + 1); // reached
 };
 
 yielded = yld(fct);
