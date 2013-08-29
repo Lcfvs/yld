@@ -23,7 +23,7 @@ onFormSubmit = function* onFormSubmit(submitEvent) {
         response = yield setTimeout(yldSendXHR.next, delay);
     }
  
-    yield console.log('Upload done : ' + response.responseText);
+    console.log('Upload done : ' + response.responseText);
 };
  
 sendXHR = function* sendXHR(request) {
