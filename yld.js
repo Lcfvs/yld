@@ -54,7 +54,13 @@ yld = (function () {
                 });
             },
             nextCb: function () {
-                proto.next(slice.call(arguments));
+                var value;
+                
+                value = slice.call(arguments);
+                
+                defer(function () {
+                    generator.next(value);
+                });
             },
             throw: function(error) {
                 defer(function() {
