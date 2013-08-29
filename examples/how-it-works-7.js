@@ -12,10 +12,10 @@ read = function* read(path) {
     data = response[1];
     
     if (error) {
-        this.error = error;
+        this.throw(error);
     }
     
-    yield console.log(data);
+    console.log(data);
 };
 
 yldRead = yld(read);
