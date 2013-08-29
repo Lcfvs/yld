@@ -27,7 +27,7 @@ goto = function* () {
         }
     }
     
-    yield this.throw(response);
+    this.throw(response);
 };
 
 yld(goto)();
