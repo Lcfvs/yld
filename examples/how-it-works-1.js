@@ -1,4 +1,6 @@
-var fct, yielded;
+var yld, fct, yielded;
+
+yld = require('yld');
  
 fct = function* fct(value) {
     yield console.log(value + 1);
