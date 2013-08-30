@@ -1,5 +1,7 @@
-var fct;
- 
+var yld, fct;
+
+yld = require('yld');
+
 fct = function* fct(value) {
     var self, response;
  
