@@ -1,4 +1,6 @@
-var fct, fctBis, yielded;
+var yld, fct, fctBis, yielded;
+
+yld = require('yld');
  
 fct = function* fct(value) {
     var response, yieldedChild, child;
