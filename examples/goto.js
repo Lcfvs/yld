@@ -1,4 +1,6 @@
-var goto;
+var yld, goto;
+
+yld = require('yld');
 
 goto = function* () {
     var response;
