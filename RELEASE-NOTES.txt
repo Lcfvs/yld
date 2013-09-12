@@ -2,4 +2,4 @@
 
 This version includes some internal improvements changing nothing in its operation.
 
-There's one significant change: in order to avoid recursion problems, the asynchronous execution privileges setImmediate(), then process.nextTick(), then  setTimeout()... depending to the available methods.
+There's one significant change: in order to avoid recursion problems, the asynchronous execution privileges setImmediate(), then process.nextTick(), then setTimeout()... depending to the available methods.
