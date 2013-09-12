@@ -8,9 +8,10 @@ var yld;
 yld = (function () {
     'use strict';
     
-    var slice, clearer, defer, prepare, yld;
+    var arraySlice, slice, clearer, defer, prepare, yld;
     
-    slice = Array.prototype.slice;
+    arraySlice = Array.prototype.slice;
+    slice = arraySlice.call.bind(arraySlice);
     
     clearer = {
         yld: {
@@ -54,7 +55,7 @@ yld = (function () {
             nextCb: function () {
                 var value;
                 
-                value = slice.call(arguments);
+                value = slice(arguments);
                 
                 defer(function () {
                     generator.next(value);
