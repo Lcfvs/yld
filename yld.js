@@ -8,7 +8,7 @@ var yld;
 yld = (function () {
     'use strict';
     
-    var arraySlice, slice, clearer, defer, prepare, yld;
+    var arraySlice, slice, clearer, defer, genNext, genThrow, prepare, yld;
     
     arraySlice = Array.prototype.slice;
     slice = arraySlice.call.bind(arraySlice);
@@ -26,6 +26,13 @@ yld = (function () {
     
     defer = typeof setImmediate === 'function' ? setImmediate : typeof process === 'object' && typeof process.nextTick === 'function' ? process.nextTick : setTimeout;
  
+    genNext = function (value) {
+        this.next(value);
+    };
+ 
+    genThrow = function (error) {
+        this.throw(error);
+    };
     prepare = function* (parent) {
         var proto, generator, fnGenerator, response;
         
@@ -48,23 +55,13 @@ yld = (function () {
                 };
             },
             next: function (value) {
-                defer(function () {
-                    generator.next(value);
-                });
+                defer(genNext.bind(generator, value));
             },
             nextCb: function () {
-                var value;
-                
-                value = slice(arguments);
-                
-                defer(function () {
-                    generator.next(value);
-                });
+                defer(genNext.bind(generator, slice(arguments)));
             },
             throw: function(error) {
-                defer(function() {
-                    fnGenerator.throw(error);
-                });
+                defer(genThrow.bind(fnGenerator, error));
             }
         };
         
