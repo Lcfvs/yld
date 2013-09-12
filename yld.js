@@ -23,9 +23,7 @@ yld = (function () {
     
     Object.freeze(clearer);
     
-    defer = typeof process === 'object' && typeof process.nextTick === 'function' ? process.nextTick : function nextTick(closure) {
-        setTimeout(closure);
-    };
+    defer = typeof setImmediate === 'function' ? setImmediate : typeof process === 'object' && typeof process.nextTick === 'function' ? process.nextTick : setTimeout;
  
     prepare = function* (parent) {
         var proto, generator, fnGenerator, response;
