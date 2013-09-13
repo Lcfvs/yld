@@ -5,13 +5,40 @@ https://github.com/Lcfvs/yld
 */
 var yld;
  
-yld = (function () {
+yld = (function (global) {
     'use strict';
     
-    var arraySlice, slice, clearer, defer, genNext, genThrow, prepare, yld;
+    var arraySlice, slice, defer, clearer, genNext, genThrow, prepare, yld;
     
     arraySlice = Array.prototype.slice;
     slice = arraySlice.call.bind(arraySlice);
+    
+    defer = (function () {
+        var isNaN, abs, setImmediate, setTimeout, parseDelay, defer;
+        
+        isNaN = global.isNaN;
+        abs = global.Math.abs;
+        setImmediate = global.setImmediate || global.setTimeout;
+        setTimeout = global.setTimeout;
+        
+        parseDelay = function parseDelay(value) {
+            var delay;
+            
+            delay = parseInt(value);
+            
+            return !isNaN(delay) && abs(delay) === value ? value : undefined;
+        };
+        
+        defer = function (fn, delay) {
+            if (parseDelay(delay) !== undefined) {
+                setTimeout(fn, delay);
+            } else {
+                setImmediate(fn);
+            }
+        };
+        
+        return defer;
+    }());
     
     clearer = {
         yld: {
@@ -23,8 +50,6 @@ yld = (function () {
     };
     
     Object.freeze(clearer);
-    
-    defer = typeof setImmediate === 'function' ? setImmediate : typeof process === 'object' && typeof process.nextTick === 'function' ? process.nextTick : setTimeout;
  
     genNext = function (value) {
         this.next(value);
@@ -55,10 +80,10 @@ yld = (function () {
                 };
             },
             next: function (value) {
-                defer(genNext.bind(generator, value));
+                defer(genNext.bind(generator, value), this);
             },
             nextCb: function () {
-                defer(genNext.bind(generator, slice(arguments)));
+                defer(genNext.bind(generator, slice(arguments)), this);
             },
             throw: function(error) {
                 defer(genThrow.bind(fnGenerator, error));
@@ -94,7 +119,7 @@ yld = (function () {
     };
     
     return yld;
-}());
+}(typeof window === 'object' ? window : global));
 
 if (typeof module === 'object' && module.exports !== undefined) {
     module.exports = yld;
