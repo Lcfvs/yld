@@ -144,10 +144,10 @@ The yld function :
 ------------------
 
 ```JavaScript
-var yielded, generator;
+var yielded, iterator;
 
-yielded = yld(closure);
-generator = yielded(/* closure arguments */);
+yielded = yld(generator);
+iterator = yielded(/* closure arguments */);
 ```
 
 <dl>
@@ -163,7 +163,7 @@ generator = yielded(/* closure arguments */);
   <dd>
     <dl>
       <dt>
-        Function <strong>closure()</strong>
+        Function <strong>generator()</strong>
       </dt>
       <dd>
         Your function to be called, asynchronously
@@ -186,15 +186,15 @@ generator = yielded(/* closure arguments */);
 </dl>
 
 
-The closure structure :
+The generator structure :
 -----------------------
 
 <strong>Create a step :</strong>
 
 ```JavaScript
-var closure;
+var generator;
 
-closure = function () {
+generator = function* () {
     yield; // this makes a step
 };
 ```
@@ -202,9 +202,9 @@ closure = function () {
 <strong>Retrieve a response form an other scope :</strong>
 
 ```JavaScript
-var closure
+var generator;
 
-closure = function () {
+generator = function* () {
     var response;
 
     response = yield;
@@ -225,9 +225,9 @@ The parent yielded scope (parent.yld & parent.throw are unavailable. Each scope 
 Throws an error (a string or an instance of Error)
 
 ```JavaScript
-var closure;
+var generator;
 
-closure = function () {
+generator = function* () {
     this.throw('error message'); // throws the error message
     yield; // unreached point
 };
@@ -238,9 +238,9 @@ closure = function () {
 Sends variables to the next yield response
 
 ```JavaScript
-var closure;
+var generator;
 
-closure = function () {
+generator = function* () {
     var response;
 
     this.next(123);
@@ -262,9 +262,9 @@ See [how-it-works-7.js](https://github.com/Lcfvs/yld/blob/master/examples/how-it
 Your this context knows yld as internal method
 
 ```JavaScript
-var closure;
+var generator;
 
-closure = function () {
+generator = function* () {
     var yielded, response;
     
     yielded = this.yld(function (/* args */) {
@@ -283,9 +283,9 @@ Send a value after a delay :
 Bind an absolute integer to generator.next() or generator.nextCb() method.
 
 ```JavaScript
-var closure;
+var generator;
 
-closure = function () {
+generator = function* () {
     var yielded, response;
     
     yielded = this.yld(function (/* args */) {
