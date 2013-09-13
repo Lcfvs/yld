@@ -277,6 +277,31 @@ closure = function () {
 ```
 
 
+Send a value after a delay :
+----------------------------
+
+Bind an absolute integer to generator.next() or generator.nextCb() method.
+
+```JavaScript
+var closure;
+
+closure = function () {
+    var yielded, response;
+    
+    yielded = this.yld(function (/* args */) {
+        var delayedNext;
+        
+        // here, the this.parent.next() is used to send a response to the parent scope, after a delay (2 seconds)
+        delayedNext = this.parent.next.bind(2000);
+        
+        delayedNext(123);
+    });
+    
+    response = yield yielded(/* args */); // response is 123
+};
+```
+
+
 Requirements :
 --------------
 
