@@ -58,9 +58,9 @@ Note the asterisk following the `function` word.
 The returned generator can be considered as the instruction lists contained by your function. The generator pauses at each `yield` until you call the `next()` method.
 
 ``` JavaScript
-var generate, generator;
+var generator, iterator;
  
-generate = function* generate(value) {
+generator = function* generator(value) {
     var message;
 
     message = 'Hello';
@@ -68,15 +68,15 @@ generate = function* generate(value) {
     yield message + ' ' + value;
 };
  
-generator = generate('World');
+iterator = generator('World');
 
 // writes "Hello"
-console.log(generator.next());
+console.log(iterator.next());
 
 // calls the next yield, after 2 seconds
 setTimeout(function () {
     // writes "Hello World" in your console, after the 2 seconds
-    console.log(generator.next());
+    console.log(iterator.next());
 }, 2000);
 ```
 
@@ -85,9 +85,9 @@ In fact, `yield` builds a two ways communication : the first statement following
 This allow you to send a value to the generator from the current `yield` and to receive a value there.
 
 ``` JavaScript
-var generate, generator;
+var generator, iterator;
  
-generate = function* generate() {
+generator = function* generator() {
     var message, response;
  
     message = 'Hello';
@@ -95,15 +95,15 @@ generate = function* generate() {
     yield message + ' ' + response;
 };
  
-generator = generate();
+iterator = generator();
  
 // writes "Hello"
-console.log(generator.next());
+console.log(iterator.next());
  
 // sends some data to the current yield point, after the 2 seconds
 setTimeout(function () {
     // sends "World" to the current yield & writes "Hello World" in your console, after the 2 seconds
-    console.log(generator.next('World'));
+    console.log(iterator.next('World'));
 }, 2000);
 ```
 
