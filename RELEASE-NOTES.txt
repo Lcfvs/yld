@@ -1,3 +1,11 @@
+13/09/2013 - yld version 1.2.0
+
+Adding a way to set a delay before the generator.next() or generator.nextCb() call
+
+In order to avoid recursion problems, the asynchronous execution privileges setImmediate(), then setTimeout()... depending to the available methods.
+
+------------------------------
+
 13/09/2013 - yld version 1.1.9
 
 This version includes some internal improvements changing nothing in its operation.
