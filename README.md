@@ -294,7 +294,7 @@ closure = function () {
         // here, the this.parent.next() is used to send a response to the parent scope, after a delay (2 seconds)
         delayedNext = this.parent.next.bind(2000);
         
-        delayedNext(123);
+        delayedNext(123); // sends the response
     });
     
     response = yield yielded(/* args */); // response is 123
