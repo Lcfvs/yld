@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>yld AJAX sample</title>
+        <title>Titre</title>
     </head>
     <body>
         <form action="" method="post">
@@ -28,8 +28,11 @@
         <script src="https://raw.githubusercontent.com/Lcfvs/yld/master/yld.js"></script>
         <script>
 void function () {
+    'use strict';
+    
     var onFormSubmit,
         sendXHR,
+        onResponse,
         forms;
 
     onFormSubmit = function* onFormSubmit(event, callback) {
