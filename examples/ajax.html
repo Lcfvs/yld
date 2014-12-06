@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>yld AJAX sample</title>
+    </head>
+    <body>
+        <form action="" method="post">
+            <p>
+                <label for="a">
+                    <input id="a" name="a" type="text" />
+                </label>
+            </p>
+            <p>
+                <input type="submit" />
+            </p>
+        </form>
+        <form action="" method="post">
+            <p>
+                <label for="b">
+                    <input id="b" name="b" type="text" />
+                </label>
+            </p>
+            <p>
+                <input type="submit" />
+            </p>
+        </form>
+        <script src="https://raw.githubusercontent.com/Lcfvs/yld/master/yld.js"></script>
+        <script>
+void function () {
+    var onFormSubmit,
+        sendXHR,
+        forms;
+
+    onFormSubmit = function* onFormSubmit(event, callback) {
+        var form,
+            url,
+            method,
+            body,
+            yldSendXHR,
+            response,
+            delay;
+     
+        form = event.target;
+        url = form.action || form.ownerDocument.location.href;
+        method = form.method || 'GET';
+        
+        if (method.toUpperCase() === 'GET') {
+            // ...
+        } else {
+            body = new FormData(form);
+        }
+
+        do {
+            yldSendXHR = yield this.yld(sendXHR)({
+                body: body,
+                method: method,
+                url: url
+            });
+        
+            if (response === undefined) {
+                delay = 0;
+            } else {
+                delay = 5000;
+            }
+     
+            response = yield yldSendXHR.next.bind(delay)();
+        } while (response.status !== 200);
+     
+        callback(response.responseText, form, response);
+    };
+     
+    sendXHR = function* sendXHR(request) {
+        var parent,
+            method,
+            xhr;
+     
+        parent = this.parent;
+        method = request.method;
+     
+        xhr = new XMLHttpRequest();
+        xhr.request = request;
+        xhr.open(method, request.url, true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+     
+        xhr.addEventListener('readystatechange', function () {
+            if (xhr.readyState === 4) {
+                parent.next(xhr);
+            }
+        });
+     
+        yield parent.next(this);
+     
+        while (true) {
+            yield xhr.send(request.body);
+        }
+    };
+
+    forms = Array.prototype.slice.call(document.querySelectorAll('form'), 0);
+
+    onResponse = function onResponse(response, form, xhr) {
+        console.log(response, form, xhr);
+    };
+    
+    forms.forEach(function (element) {
+        var onSubmit;
+        
+        onSubmit = yld(onFormSubmit);
+        
+        element.addEventListener('submit', function (event) {
+            onSubmit(event, onResponse);
+            event.preventDefault();
+            
+            return false;
+        });
+    });
+}();
+        </script>
+    </body>
+</html>
