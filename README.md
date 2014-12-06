@@ -1,6 +1,9 @@
 yld
 ===
 
+[![Actual version published on NPM](https://badge.fury.io/js/yld.png)](https://www.npmjs.org/package/yld)
+[![npm module downloads per month](http://img.shields.io/npm/dm/yld.svg)](https://www.npmjs.org/package/yld)
+
 Forget your promises, adopt the <strong>yielded programming style</strong> !
 
 This Node.js module is under MIT License.
