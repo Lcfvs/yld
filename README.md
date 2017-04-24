@@ -2,7 +2,7 @@ yld
 ===
 
 [![Actual version published on NPM](https://badge.fury.io/js/yld.png)](https://www.npmjs.org/package/yld)
-[![npm module downloads per month](http://img.shields.io/npm/dm/yld.svg)](https://www.npmjs.org/package/yld)
+[![Downloads](https://img.shields.io/npm/dt/yld.svg?style=plastic)]()
 
 Forget your promises, adopt the <strong>yielded programming style</strong> !
 
